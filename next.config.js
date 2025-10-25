@@ -3,4 +3,4 @@ const nextConfig = {
   // 配置内容
 }
 
-export default nextConfig
+export default nextConfig 
