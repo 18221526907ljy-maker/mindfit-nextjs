@@ -2,10 +2,16 @@
 import React from "react";
 
 function cn(...classes: (string | undefined | null | false)[]) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
-export const Navbar = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+export const Navbar = ({ 
+  children, 
+  className 
+}: { 
+  children: React.ReactNode; 
+  className?: string 
+}) => {
   return (
     <nav className={cn("fixed top-0 left-0 right-0 z-50 bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800", className)}>
       {children}
@@ -13,7 +19,13 @@ export const Navbar = ({ children, className }: { children: React.ReactNode; cla
   );
 };
 
-export const NavBody = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+export const NavBody = ({ 
+  children, 
+  className 
+}: { 
+  children: React.ReactNode; 
+  className?: string 
+}) => {
   return (
     <div className={cn("hidden md:flex items-center justify-between px-8 py-4 max-w-7xl mx-auto", className)}>
       {children}
@@ -21,11 +33,17 @@ export const NavBody = ({ children, className }: { children: React.ReactNode; cl
   );
 };
 
-export const NavItems = ({ items, className }: { items: { name: string; link: string }[]; className?: string }) => {
+export const NavItems = ({ 
+  items, 
+  className 
+}: { 
+  items: Array<{ name: string; link: string }>; 
+  className?: string 
+}) => {
   return (
     <div className={cn("flex items-center gap-8", className)}>
       {items.map((item, idx) => (
-        
+        <a
           key={idx}
           href={item.link}
           className="text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition"
@@ -37,7 +55,11 @@ export const NavItems = ({ items, className }: { items: { name: string; link: st
   );
 };
 
-export const NavbarLogo = ({ className }: { className?: string }) => {
+export const NavbarLogo = ({ 
+  className 
+}: { 
+  className?: string 
+}) => {
   return (
     <a href="/" className={cn("text-2xl font-bold text-blue-600 dark:text-blue-400", className)}>
       MindFit
@@ -47,31 +69,35 @@ export const NavbarLogo = ({ className }: { className?: string }) => {
 
 export const NavbarButton = ({ 
   children, 
-  variant = "primary",
-  onClick,
+  variant, 
+  onClick, 
   className 
 }: { 
   children: React.ReactNode; 
-  variant?: "primary" | "secondary";
-  onClick?: () => void;
-  className?: string;
+  variant?: "primary" | "secondary"; 
+  onClick?: () => void; 
+  className?: string 
 }) => {
+  const buttonVariant = variant || "primary";
   const baseClasses = "px-6 py-2 rounded-lg font-medium transition";
-  const variantClasses = variant === "primary" 
-    ? "bg-blue-600 text-white hover:bg-blue-700"
+  const variantClasses = buttonVariant === "primary" 
+    ? "bg-blue-600 text-white hover:bg-blue-700" 
     : "bg-transparent text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700";
 
   return (
-    <button 
-      onClick={onClick}
-      className={cn(baseClasses, variantClasses, className)}
-    >
+    <button onClick={onClick} className={cn(baseClasses, variantClasses, className)}>
       {children}
     </button>
   );
 };
 
-export const MobileNav = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+export const MobileNav = ({ 
+  children, 
+  className 
+}: { 
+  children: React.ReactNode; 
+  className?: string 
+}) => {
   return (
     <div className={cn("md:hidden", className)}>
       {children}
@@ -79,7 +105,13 @@ export const MobileNav = ({ children, className }: { children: React.ReactNode; 
   );
 };
 
-export const MobileNavHeader = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+export const MobileNavHeader = ({ 
+  children, 
+  className 
+}: { 
+  children: React.ReactNode; 
+  className?: string 
+}) => {
   return (
     <div className={cn("flex items-center justify-between px-4 py-4", className)}>
       {children}
@@ -89,24 +121,16 @@ export const MobileNavHeader = ({ children, className }: { children: React.React
 
 export const MobileNavToggle = ({ 
   isOpen, 
-  onClick,
+  onClick, 
   className 
 }: { 
   isOpen: boolean; 
-  onClick: () => void;
-  className?: string;
+  onClick: () => void; 
+  className?: string 
 }) => {
   return (
-    <button 
-      onClick={onClick}
-      className={cn("p-2 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg", className)}
-    >
-      <svg 
-        className="w-6 h-6" 
-        fill="none" 
-        stroke="currentColor" 
-        viewBox="0 0 24 24"
-      >
+    <button onClick={onClick} className={cn("p-2 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg", className)}>
+      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         {isOpen ? (
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
         ) : (
@@ -119,16 +143,18 @@ export const MobileNavToggle = ({
 
 export const MobileNavMenu = ({ 
   children, 
-  isOpen,
-  onClose,
+  isOpen, 
+  onClose, 
   className 
 }: { 
   children: React.ReactNode; 
-  isOpen: boolean;
-  onClose: () => void;
-  className?: string;
+  isOpen: boolean; 
+  onClose: () => void; 
+  className?: string 
 }) => {
-  if (!isOpen) return null;
+  if (!isOpen) {
+    return null;
+  }
 
   return (
     <div className={cn("px-4 py-6 space-y-4 border-t border-neutral-200 dark:border-neutral-800", className)}>
