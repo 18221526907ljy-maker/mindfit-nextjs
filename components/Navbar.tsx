@@ -33,7 +33,6 @@ export default function Navbar() {
   return (
     <div className="relative w-full">
       <NavbarContainer>
-        {/* Desktop Navigation */}
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} />
@@ -43,7 +42,6 @@ export default function Navbar() {
           </div>
         </NavBody>
 
-        {/* Mobile Navigation */}
         <MobileNav>
           <MobileNavHeader>
             <NavbarLogo />
@@ -58,7 +56,7 @@ export default function Navbar() {
             onClose={() => setIsMobileMenuOpen(false)}
           >
             {navItems.map((item, idx) => (
-              
+              <a
                 key={`mobile-link-${idx}`}
                 href={item.link}
                 onClick={() => setIsMobileMenuOpen(false)}
