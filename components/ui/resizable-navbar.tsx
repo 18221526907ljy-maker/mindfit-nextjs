@@ -1,6 +1,9 @@
 "use client";
 import React from "react";
-import { cn } from "@/lib/utils";
+
+function cn(...classes: (string | undefined | null | false)[]) {
+  return classes.filter(Boolean).join(' ');
+}
 
 export const Navbar = ({ children, className }: { children: React.ReactNode; className?: string }) => {
   return (
@@ -23,7 +26,7 @@ export const NavItems = ({ items, className }: { items: { name: string; link: st
     <div className={cn("flex items-center gap-8", className)}>
       {items.map((item, idx) => (
         
-          key={`nav-item-${idx}`}
+          key={idx}
           href={item.link}
           className="text-sm font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition"
         >
@@ -53,15 +56,15 @@ export const NavbarButton = ({
   onClick?: () => void;
   className?: string;
 }) => {
-  const variants = {
-    primary: "bg-blue-600 text-white hover:bg-blue-700",
-    secondary: "bg-transparent text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700"
-  };
+  const baseClasses = "px-6 py-2 rounded-lg font-medium transition";
+  const variantClasses = variant === "primary" 
+    ? "bg-blue-600 text-white hover:bg-blue-700"
+    : "bg-transparent text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 border border-neutral-200 dark:border-neutral-700";
 
   return (
     <button 
       onClick={onClick}
-      className={cn("px-6 py-2 rounded-lg font-medium transition", variants[variant], className)}
+      className={cn(baseClasses, variantClasses, className)}
     >
       {children}
     </button>
@@ -133,26 +136,3 @@ export const MobileNavMenu = ({
     </div>
   );
 };
-```
-
-4. 点击 **"Commit changes"**
-
----
-
-## 📋 确认检查清单：
-
-请确保您已经创建了以下所有文件：
-```
-mindfit-nextjs/
-├── components/
-│   ├── ui/
-│   │   └── resizable-navbar.tsx  ⬅️ 刚刚创建这个
-│   ├── Navbar.tsx                ✅
-│   ├── Hero.tsx                  ✅
-│   ├── FeatureCarousel.tsx       ✅
-│   └── Footer.tsx                ✅
-├── lib/
-│   └── utils.ts                  ✅
-├── app/
-│   └── page.tsx
-└── package.json                  ✅
